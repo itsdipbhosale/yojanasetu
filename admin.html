@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>YojanaSetu Admin</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='demo.css') }}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Yojana<span>Setu</span>
+    </div>
+
+    <nav>
+        <a href="/">
+            Website
+        </a>
+    </nav>
+
+</header>
+
+
+<main class="admin-container">
+
+    <div class="admin-card">
+
+        <h1>Add Government Scheme</h1>
+
+        <p>
+            Add a new government scheme to YojanaSetu.
+        </p>
+
+
+        <form id="schemeForm">
+
+
+            <!-- ADMIN KEY -->
+
+            <label>
+                Admin Key
+            </label>
+
+            <input
+                type="password"
+                id="adminKey"
+                placeholder="Enter admin key"
+                required
+            >
+
+
+            <!-- SCHEME NAME -->
+
+            <label>
+                Scheme Name
+            </label>
+
+            <input
+                type="text"
+                id="schemeName"
+                placeholder="Example: Post Matric Scholarship"
+                required
+            >
+
+
+            <!-- CATEGORY -->
+
+            <label>
+                Category
+            </label>
+
+            <select id="schemeCategory" required>
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option value="college">
+                    College Student
+                </option>
+
+                <option value="school">
+                    School Student
+                </option>
+
+                <option value="farmer">
+                    Farmer
+                </option>
+
+                <option value="disabled">
+                    Person with Disability
+                </option>
+
+                <option value="senior">
+                    Senior Citizen
+                </option>
+
+                <option value="others">
+                    Others
+                </option>
+
+            </select>
+
+
+            <!-- CASTE -->
+
+            <label>
+                Caste
+            </label>
+
+            <input
+                type="text"
+                id="schemeCaste"
+                placeholder="Example: All OR OBC,SC,ST"
+                required
+            >
+
+            <p class="admin-note">
+                Multiple castes असल्यास comma वापर.
+                Example: OBC,SC,ST
+            </p>
+
+
+            <!-- TYPE -->
+
+            <label>
+                Scheme Type
+            </label>
+
+            <select id="schemeType" required>
+
+                <option value="">
+                    Select Type
+                </option>
+
+                <option value="Scholarship">
+                    Scholarship
+                </option>
+
+                <option value="Financial Support">
+                    Financial Support
+                </option>
+
+                <option value="Pension">
+                    Pension
+                </option>
+
+                <option value="Education">
+                    Education
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <!-- DESCRIPTION -->
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="schemeDescription"
+                rows="4"
+                placeholder="Describe the scheme"
+                required
+            ></textarea>
+
+
+            <!-- ELIGIBILITY -->
+
+            <label>
+                Eligibility
+            </label>
+
+            <textarea
+                id="schemeEligibility"
+                rows="4"
+                placeholder="Who is eligible?"
+                required
+            ></textarea>
+
+
+            <!-- BENEFITS -->
+
+            <label>
+                Benefits
+            </label>
+
+            <textarea
+                id="schemeBenefit"
+                rows="4"
+                placeholder="What benefits are provided?"
+                required
+            ></textarea>
+
+
+            <!-- WHERE TO APPLY -->
+
+            <label>
+                Where to Apply
+            </label>
+
+            <textarea
+                id="schemeWhereToApply"
+                rows="4"
+                placeholder="Where can the applicant apply?"
+                required
+            ></textarea>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="auth-submit">
+
+                Add Scheme
+
+            </button>
+
+        </form>
+
+
+        <p id="adminMessage"
+           class="admin-message">
+        </p>
+
+    </div>
+
+</main>
+
+
+<script>
+
+document
+    .getElementById("schemeForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const adminKey =
+                document.getElementById(
+                    "adminKey"
+                ).value;
+
+
+            const data = {
+
+                name:
+                    document.getElementById(
+                        "schemeName"
+                    ).value,
+
+                category:
+                    document.getElementById(
+                        "schemeCategory"
+                    ).value,
+
+                caste:
+                    document.getElementById(
+                        "schemeCaste"
+                    ).value,
+
+                type:
+                    document.getElementById(
+                        "schemeType"
+                    ).value,
+
+                description:
+                    document.getElementById(
+                        "schemeDescription"
+                    ).value,
+
+                eligibility:
+                    document.getElementById(
+                        "schemeEligibility"
+                    ).value,
+
+                benefit:
+                    document.getElementById(
+                        "schemeBenefit"
+                    ).value,
+
+                where_to_apply:
+                    document.getElementById(
+                        "schemeWhereToApply"
+                    ).value
+            };
+            
+            <label>
+    Application Portal URL
+</label>
+
+<input
+    type="url"
+    id="schemeApplyUrl"
+    placeholder="https://example.gov.in/apply"
+    required
+>
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin/schemes",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "X-Admin-Key":
+                                    adminKey
+                            },
+
+                            body:
+                                JSON.stringify(data)
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                const message =
+                    document.getElementById(
+                        "adminMessage"
+                    );
+
+
+                message.textContent =
+                    result.message;
+
+
+                if (result.success) {
+
+                    message.style.color =
+                        "green";
+
+                    document
+                        .getElementById(
+                            "schemeForm"
+                        )
+                        .reset();
+
+                } else {
+
+                    message.style.color =
+                        "red";
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Server error. Check Flask terminal."
+                );
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
