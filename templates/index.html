@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YojanaSetu - Government Schemes</title>
+
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='demo.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo" onclick="goHome()">
+            <div class="logo-box">YS</div>
+
+            <div>
+                <h3>YojanaSetu</h3>
+                <span>Government Schemes</span>
+            </div>
+        </div>
+
+        <div class="top-search">
+            <input type="text" id="topSearch" placeholder="Search scheme..." onkeydown="if(event.key === 'Enter') topSearchSchemes()">
+
+            <button onclick="topSearchSchemes()">
+            Search
+        </button>
+        </div>
+
+        <nav>
+            <a href="#" onclick="goHome(); return false;">Home</a>
+
+            <a href="#categories" onclick="scrollToCategories(); return false;">
+        Categories
+    </a>
+
+            <a href="#about" onclick="scrollToAbout(); return false;">
+        About
+    </a>
+
+            <button class="login-btn" onclick="openLogin()">
+        Login
+    </button>
+
+            <button class="signup-btn" onclick="openSignup()">
+        Sign Up
+    </button>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- ================= HOME PAGE ================= -->
+
+        <section id="homePage">
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <div class="hero-text">
+
+                        <span class="small-title">
+                    YOJANASETU
+                </span>
+
+                        <h1>
+                            Find Government Schemes Made For You
+                        </h1>
+
+                        <p>
+                            Find scholarships, financial assistance and welfare schemes based on your category and caste.
+                        </p>
+
+                        <button class="primary-btn" onclick="scrollToCategories()">
+
+                    Explore Schemes →
+                </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FINDER -->
+
+            <section class="finder-section">
+
+                <div class="finder-card">
+
+                    <div class="finder-icon">
+                        🔎
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Find the Right Scheme
+                        </h2>
+
+                        <p>
+                            Select your category and caste to discover relevant schemes.
+                        </p>
+
+                    </div>
+
+                    <div class="flow">
+
+                        <span>1. Category</span>
+                        <b>→</b>
+
+                        <span>2. Caste</span>
+                        <b>→</b>
+
+                        <span>3. Schemes</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CATEGORY ================= -->
+
+            <section id="categories" class="categories-section">
+
+                <div class="section-heading">
+
+                    <span>
+                EXPLORE
+            </span>
+
+                    <h2>
+                        Choose Your Category
+                    </h2>
+
+                    <p>
+                        Select a category to continue.
+                    </p>
+
+                </div>
+
+
+                <div class="category-grid">
+
+
+                    <!-- COLLEGE -->
+
+                    <button class="category-card" onclick="selectCategory('college')">
+
+                <img
+                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80"
+                    alt="College Student">
+
+                <div class="card-content">
+
+                    <h3>
+                        College Student
+                    </h3>
+
+                    <p>
+                        Scholarships and schemes
+                    </p>
+
+                </div>
+
+            </button>
+
+
+                    <!-- SCHOOL -->
+
+                    <button class="category-card" onclick="selectCategory('school')">
+
+                <img
+                    src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80"
+                    alt="School Student">
+
+                <div class="card-content">
+
+                    <h3>
+                        School Student
+                    </h3>
+
+                    <p>
+                        Education schemes
+                    </p>
+
+                </div>
+
+            </button>
+
+
+                    <!-- FARMER -->
+
+                    <button class="category-card" onclick="selectCategory('farmer')">
+
+                <img
+                    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80"
+                    alt="Farmer">
+
+                <div class="card-content">
+
+                    <h3>
+                        Farmer
+                    </h3>
+
+                    <p>
+                        Farmer government schemes
+                    </p>
+
+                </div>
+
+            </button>
+
+
+                    <!-- DISABILITY -->
+
+                    <button class="category-card" onclick="selectCategory('disabled')">
+
+                <img
+                    src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=900&q=80"
+                    alt="Disability Support">
+
+                <div class="card-content">
+
+                    <h3>
+                        Disability
+                    </h3>
+
+                    <p>
+                        Support schemes
+                    </p>
+
+                </div>
+
+            </button>
+
+
+                    <!-- SENIOR -->
+
+                    <button class="category-card" onclick="selectCategory('senior')">
+
+              
+    <img
+        src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTA0L3NyLWltYWdlLTA1MDQyNS1iYW0xNC1zLTE2NF8xLmpwZw.jpg"
+        alt="Senior Citizens">
+
+
+                <div class="card-content">
+
+                    <h3>
+                        Senior Citizen
+                    </h3>
+
+                    <p>
+                        Senior citizen schemes
+                    </p>
+
+                </div>
+
+            </button>
+
+
+                    <!-- OTHERS -->
+
+                    <button class="category-card" onclick="selectCategory('others')">
+
+                <img
+                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+                    alt="Others">
+
+                <div class="card-content">
+
+                    <h3>
+                        Others
+                    </h3>
+
+                    <p>
+                        Other government schemes
+                    </p>
+
+                </div>
+
+            </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ABOUT -->
+
+            <section id="about" class="about-section">
+
+                <span>
+            ABOUT YOJANASETU
+        </span>
+
+                <h2>
+                    Government information, simplified.
+                </h2>
+
+                <p>
+                    YojanaSetu helps citizens discover government schemes by category and caste in a simple step-by-step flow.
+                </p>
+
+            </section>
+
+        </section>
+
+
+        <!-- ================= CASTE PAGE ================= -->
+
+        <section id="castePage" class="page hidden">
+
+            <div class="page-container">
+
+                <button class="back-btn" onclick="goHome()">
+
+            ← Back to Home
+
+        </button>
+
+
+                <div class="selection-header">
+
+                    <div id="selectedCategoryIcon" class="selection-icon">
+
+                        🎓
+
+                    </div>
+
+                    <div>
+
+                        <span class="small-title">
+                    STEP 2 OF 3
+                </span>
+
+                        <h2 id="selectedCategoryTitle">
+                            College Student
+                        </h2>
+
+                        <p>
+                            Select your caste category to see matching schemes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STEP INDICATOR -->
+
+                <div class="step-line">
+
+                    <div class="step active">
+                        <span>✓</span> Category
+                    </div>
+
+                    <div class="line active"></div>
+
+                    <div class="step current">
+                        <span>2</span> Caste
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div class="step">
+                        <span>3</span> Schemes
+                    </div>
+
+                </div>
+
+
+                <!-- CASTE CARDS -->
+
+                <div class="caste-grid">
+
+
+                    <button class="caste-card" onclick="selectCaste('General')">
+
+                <span class="caste-icon">
+                    G
+                </span>
+
+                <span>
+
+                    <strong>
+                        General
+                    </strong>
+
+                    <small>
+                        View schemes for General category
+                    </small>
+
+                </span>
+
+                <b>→</b>
+
+            </button>
+
+
+                    <button class="caste-card" onclick="selectCaste('OBC')">
+
+                <span class="caste-icon">
+                    O
+                </span>
+
+                <span>
+
+                    <strong>
+                        OBC
+                    </strong>
+
+                    <small>
+                        View schemes for OBC category
+                    </small>
+
+                </span>
+
+                <b>→</b>
+
+            </button>
+
+
+                    <button class="caste-card" onclick="selectCaste('SC')">
+
+                <span class="caste-icon">
+                    S
+                </span>
+
+                <span>
+
+                    <strong>
+                        SC
+                    </strong>
+
+                    <small>
+                        View schemes for SC category
+                    </small>
+
+                </span>
+
+                <b>→</b>
+
+            </button>
+
+
+                    <button class="caste-card" onclick="selectCaste('ST')">
+
+                <span class="caste-icon">
+                    T
+                </span>
+
+                <span>
+
+                    <strong>
+                        ST
+                    </strong>
+
+                    <small>
+                        View schemes for ST category
+                    </small>
+
+                </span>
+
+                <b>→</b>
+
+            </button>
+
+
+                    <button class="caste-card full" onclick="selectCaste('Other')">
+
+                <span class="caste-icon">
+                    +
+                </span>
+
+                <span>
+
+                    <strong>
+                        Other
+                    </strong>
+
+                    <small>
+                        View schemes for other caste categories
+                    </small>
+
+                </span>
+
+                <b>→</b>
+
+            </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SCHEMES PAGE ================= -->
+
+        <section id="schemesPage" class="page hidden">
+
+            <div class="page-container">
+
+                <button class="back-btn" onclick="showCastePage()">
+
+            ← Change Caste
+
+        </button>
+
+
+                <div class="schemes-top">
+
+                    <div>
+
+                        <span class="small-title">
+                    STEP 3 OF 3
+                </span>
+
+                        <h2>
+                            Available Government Schemes
+                        </h2>
+
+                        <p>
+                            Showing schemes based on your selected category and caste.
+                        </p>
+
+                    </div>
+
+
+                    <div class="selected-badges">
+
+                        <span id="categoryBadge">
+                    College Student
+                </span>
+
+                        <span id="casteBadge">
+                    General
+                </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SEARCH + FILTER -->
+
+                <div class="scheme-tools">
+
+                    <input type="text" id="searchInput" placeholder="Search schemes..." oninput="searchSchemes()">
+
+                    <select id="typeFilter" onchange="filterSchemes()">
+
+                <option value="all">
+                    All Types
+                </option>
+
+                <option value="Scholarship">
+                    Scholarship
+                </option>
+
+                <option value="Financial Support">
+                    Financial Support
+                </option>
+
+                <option value="Pension">
+                    Pension
+                </option>
+
+            </select>
+
+                </div>
+
+
+                <!-- SCHEME LIST -->
+
+                <div id="schemeList" class="scheme-grid">
+                </div>
+
+
+                <!-- NO RESULTS -->
+
+                <div id="noResults" class="no-results hidden">
+
+                    <div>
+                        🔎
+                    </div>
+
+                    <h3>
+                        No matching schemes found
+                    </h3>
+
+                    <p>
+                        Try another search or change your caste selection.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DETAILS PAGE ================= -->
+
+        <section id="detailsPage" class="page hidden">
+
+            <div class="page-container">
+
+                <button class="back-btn" onclick="showSchemes()">
+
+            ← Back to Schemes
+
+        </button>
+
+
+                <div id="schemeDetails"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+    <!-- ================= LOGIN MODAL ================= -->
+
+    <div id="loginModal" class="auth-modal hidden">
+
+        <div class="auth-box">
+
+            <button class="close-btn" onclick="closeLogin()">
+            ×
+        </button>
+
+            <div class="auth-icon">
+                🔐
+            </div>
+
+            <h2>
+                Welcome Back
+            </h2>
+
+            <p class="auth-subtitle">
+                Login to your YojanaSetu account
+            </p>
+
+
+            <form onsubmit="loginUser(event)">
+
+                <label>
+                Email / Mobile Number
+            </label>
+
+                <input type="text" id="loginEmail" placeholder="Enter email or mobile number" required>
+
+
+                <label>
+                Password
+            </label>
+
+                <input type="password" id="loginPassword" placeholder="Enter password" required>
+
+
+                <div class="remember-row">
+
+                    <label class="remember">
+                    <input
+                        type="checkbox"
+                        id="rememberMe">
+                    Remember me
+                </label>
+
+                    <a href="#">
+                    Forgot Password?
+                </a>
+
+                </div>
+
+
+                <button type="submit" class="auth-submit">
+
+                Login
+
+            </button>
+
+            </form>
+
+
+            <p class="switch-auth">
+
+                Don't have an account?
+
+                <button onclick="switchToSignup()">
+
+                Sign Up
+
+            </button>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= SIGN UP MODAL ================= -->
+
+    <div id="signupModal" class="auth-modal hidden">
+
+        <div class="auth-box">
+
+            <button class="close-btn" onclick="closeSignup()">
+            ×
+        </button>
+
+            <div class="auth-icon">
+                👤
+            </div>
+
+            <h2>
+                Create Account
+            </h2>
+
+            <p class="auth-subtitle">
+                Create your YojanaSetu account
+            </p>
+
+
+            <form onsubmit="signupUser(event)">
+
+                <label>
+                Full Name
+            </label>
+
+                <input type="text" id="signupName" placeholder="Enter your full name" required>
+
+
+                <label>
+                Email
+            </label>
+
+                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+
+
+                <label>
+                Mobile Number
+            </label>
+
+                <input type="tel" id="signupMobile" placeholder="Enter mobile number" maxlength="10" required>
+
+
+                <label>
+                Password
+            </label>
+
+                <input type="password" id="signupPassword" placeholder="Create password" required>
+
+
+                <label>
+                Confirm Password
+            </label>
+
+                <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+
+
+                <button type="submit" class="auth-submit">
+
+                Create Account
+
+            </button>
+
+            </form>
+
+
+            <p class="switch-auth">
+
+                Already have an account?
+
+                <button onclick="switchToLogin()">
+
+                Login
+
+            </button>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div>
+
+                <h2>
+                    YojanaSetu
+                </h2>
+
+                <p>
+                    Connecting citizens with government schemes.
+                </p>
+
+            </div>
+
+            <div>
+
+                <strong>
+                YojanaSetu
+            </strong>
+
+                <p>
+                    Simple. Useful. Accessible.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 YojanaSetu. Demo Project.
+
+        </div>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
