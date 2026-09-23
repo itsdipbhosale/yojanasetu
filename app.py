@@ -211,7 +211,7 @@ def init_db():
             )
         ]
 
-       conn.executemany("""
+             conn.executemany("""
             INSERT INTO schemes
             (
                 name,
@@ -229,7 +229,7 @@ def init_db():
 
         conn.commit()
 
-        conn.close()
+    conn.close()
 
 
 with app.app_context():
