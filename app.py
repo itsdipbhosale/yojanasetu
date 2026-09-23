@@ -211,7 +211,7 @@ def init_db():
             )
         ]
 
-        conn.executemany("""
+       conn.executemany("""
             INSERT INTO schemes
             (
                 name,
@@ -220,14 +220,25 @@ def init_db():
                 type,
                 description,
                 eligibility,
-                benefit
+                benefit,
+                where_to_apply,
+                apply_url
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, '', NULL)
         """, demo_schemes)
 
         conn.commit()
 
-    conn.close()
+        conn.close()
+
+
+with app.app_context():
+    init_db()
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 
 
 # -----------------------------
