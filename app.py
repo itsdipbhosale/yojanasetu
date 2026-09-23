@@ -99,28 +99,60 @@ def init_db():
 
     if count == 0:
 
-        demo_schemes = [
+              demo_schemes = [
 
+            # -------------------------
+            # COLLEGE
+            # -------------------------
             (
                 "College Student Scholarship",
                 "college",
                 "All",
                 "Scholarship",
                 "Financial support for eligible college students.",
-                "Students studying in college and meeting scheme conditions.",
+                "Eligible college students meeting scheme conditions.",
                 "Financial assistance for education."
             ),
-
             (
                 "Post Matric Scholarship",
                 "college",
                 "OBC,SC,ST",
                 "Scholarship",
-                "Post matric scholarship for eligible students.",
+                "Post matric scholarship support for eligible students.",
                 "Students belonging to eligible categories.",
                 "Scholarship assistance."
             ),
+            (
+                "College Fee Assistance",
+                "college",
+                "All",
+                "Financial Support",
+                "Financial assistance towards eligible college education expenses.",
+                "Eligible college students.",
+                "Education fee assistance."
+            ),
+            (
+                "Higher Education Support",
+                "college",
+                "All",
+                "Financial Support",
+                "Support for students pursuing higher education.",
+                "Eligible students pursuing higher education.",
+                "Financial assistance."
+            ),
+            (
+                "Student Education Assistance",
+                "college",
+                "OBC,SC,ST",
+                "Scholarship",
+                "Education assistance for eligible students.",
+                "Students meeting eligibility conditions.",
+                "Educational support."
+            ),
 
+            # -------------------------
+            # SCHOOL
+            # -------------------------
             (
                 "School Education Scholarship",
                 "school",
@@ -130,7 +162,6 @@ def init_db():
                 "Eligible school students.",
                 "Financial support for education."
             ),
-
             (
                 "Pre Matric Scholarship",
                 "school",
@@ -140,7 +171,37 @@ def init_db():
                 "Eligible students before matriculation.",
                 "Education assistance."
             ),
+            (
+                "School Student Assistance",
+                "school",
+                "All",
+                "Financial Support",
+                "Financial assistance for eligible school students.",
+                "Eligible school students.",
+                "Educational financial support."
+            ),
+            (
+                "School Education Support",
+                "school",
+                "All",
+                "Education Support",
+                "Support for students continuing school education.",
+                "Eligible students.",
+                "Education support."
+            ),
+            (
+                "Student Scholarship Assistance",
+                "school",
+                "OBC,SC,ST",
+                "Scholarship",
+                "Scholarship assistance for eligible school students.",
+                "Students belonging to eligible categories.",
+                "Scholarship support."
+            ),
 
+            # -------------------------
+            # FARMER
+            # -------------------------
             (
                 "Farmer Financial Assistance",
                 "farmer",
@@ -150,7 +211,6 @@ def init_db():
                 "Eligible farmers.",
                 "Financial support."
             ),
-
             (
                 "Agriculture Support Scheme",
                 "farmer",
@@ -160,7 +220,37 @@ def init_db():
                 "Eligible farmers and agricultural workers.",
                 "Agriculture-related support."
             ),
+            (
+                "Farmer Agriculture Assistance",
+                "farmer",
+                "All",
+                "Agriculture Support",
+                "Assistance for eligible farming activities.",
+                "Eligible farmers.",
+                "Agriculture assistance."
+            ),
+            (
+                "Small Farmer Support",
+                "farmer",
+                "All",
+                "Financial Support",
+                "Support for eligible small and marginal farmers.",
+                "Eligible farmers.",
+                "Financial assistance."
+            ),
+            (
+                "Agricultural Development Assistance",
+                "farmer",
+                "All",
+                "Agriculture Support",
+                "Support for eligible agricultural development activities.",
+                "Eligible agricultural beneficiaries.",
+                "Agriculture-related assistance."
+            ),
 
+            # -------------------------
+            # DISABLED
+            # -------------------------
             (
                 "Disability Welfare Assistance",
                 "disabled",
@@ -170,7 +260,46 @@ def init_db():
                 "Eligible persons with disabilities.",
                 "Financial assistance."
             ),
+            (
+                "Scholarship for Students with Disabilities",
+                "disabled",
+                "All",
+                "Scholarship",
+                "Education support for eligible students with disabilities.",
+                "Eligible students with disabilities.",
+                "Educational assistance."
+            ),
+            (
+                "Disability Education Support",
+                "disabled",
+                "All",
+                "Education Support",
+                "Education assistance for eligible persons with disabilities.",
+                "Eligible students with disabilities.",
+                "Education support."
+            ),
+            (
+                "Disability Self Employment Assistance",
+                "disabled",
+                "All",
+                "Self Employment",
+                "Support for eligible persons with disabilities for self-employment.",
+                "Eligible persons with disabilities.",
+                "Self-employment assistance."
+            ),
+            (
+                "Assistive Support for Persons with Disabilities",
+                "disabled",
+                "All",
+                "Welfare Support",
+                "Welfare support for eligible persons with disabilities.",
+                "Eligible persons with disabilities.",
+                "Welfare assistance."
+            ),
 
+            # -------------------------
+            # SENIOR CITIZEN
+            # -------------------------
             (
                 "Senior Citizen Welfare Scheme",
                 "senior",
@@ -180,7 +309,46 @@ def init_db():
                 "Eligible senior citizens.",
                 "Social welfare assistance."
             ),
+            (
+                "Senior Citizen Financial Assistance",
+                "senior",
+                "All",
+                "Financial Support",
+                "Financial assistance for eligible senior citizens.",
+                "Eligible senior citizens.",
+                "Financial assistance."
+            ),
+            (
+                "Senior Citizen Pension Support",
+                "senior",
+                "All",
+                "Pension",
+                "Pension-related support for eligible senior citizens.",
+                "Eligible senior citizens.",
+                "Pension assistance."
+            ),
+            (
+                "Senior Citizen Welfare Assistance",
+                "senior",
+                "All",
+                "Welfare Support",
+                "Welfare assistance for eligible senior citizens.",
+                "Eligible senior citizens.",
+                "Welfare support."
+            ),
+            (
+                "Senior Citizen Social Support",
+                "senior",
+                "All",
+                "Social Support",
+                "Social welfare assistance for eligible senior citizens.",
+                "Eligible senior citizens.",
+                "Social support."
+            ),
 
+            # -------------------------
+            # OTHERS
+            # -------------------------
             (
                 "General Welfare Facility",
                 "others",
@@ -188,6 +356,42 @@ def init_db():
                 "Financial Support",
                 "General welfare assistance.",
                 "Eligible citizens.",
+                "Welfare support."
+            ),
+            (
+                "General Financial Assistance",
+                "others",
+                "All",
+                "Financial Support",
+                "Financial assistance for eligible beneficiaries.",
+                "Eligible citizens meeting scheme conditions.",
+                "Financial assistance."
+            ),
+            (
+                "Citizen Welfare Support",
+                "others",
+                "All",
+                "Welfare Support",
+                "Welfare support for eligible citizens.",
+                "Eligible citizens.",
+                "Welfare assistance."
+            ),
+            (
+                "General Education Assistance",
+                "others",
+                "All",
+                "Education Support",
+                "Education-related assistance for eligible beneficiaries.",
+                "Eligible students and beneficiaries.",
+                "Education support."
+            ),
+            (
+                "Community Welfare Assistance",
+                "others",
+                "All",
+                "Welfare Support",
+                "General community welfare assistance.",
+                "Eligible beneficiaries.",
                 "Welfare support."
             )
         ]
@@ -209,7 +413,6 @@ def init_db():
         """, demo_schemes)
 
         conn.commit()
-
     conn.close()
 
 
