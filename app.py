@@ -24,12 +24,10 @@ def get_db():
     return conn
 
 
-
 # -----------------------------
 # Create Tables
 # -----------------------------
 def init_db():
-    
 
     conn = get_db()
 
@@ -46,22 +44,21 @@ def init_db():
 
     # Schemes table
     conn.execute("""
-    CREATE TABLE IF NOT EXISTS schemes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        category TEXT NOT NULL,
-        caste TEXT NOT NULL,
-        type TEXT NOT NULL,
-        description TEXT NOT NULL,
-        eligibility TEXT NOT NULL,
-        benefit TEXT NOT NULL,
-        where_to_apply TEXT NOT NULL,
-        apply_url TEXT
-    )
-""")
+        CREATE TABLE IF NOT EXISTS schemes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            category TEXT NOT NULL,
+            caste TEXT NOT NULL,
+            type TEXT NOT NULL,
+            description TEXT NOT NULL,
+            eligibility TEXT NOT NULL,
+            benefit TEXT NOT NULL,
+            where_to_apply TEXT NOT NULL,
+            apply_url TEXT
+        )
+    """)
 
     # Add missing columns to old database
-
     columns = conn.execute(
         "PRAGMA table_info(schemes)"
     ).fetchall()
@@ -79,23 +76,6 @@ def init_db():
         )
 
     conn.commit()
-    
-    # Add apply_url column to old database if needed
-    columns = conn.execute(
-        "PRAGMA table_info(schemes)"
-    ).fetchall()
-
-    column_names = [column["name"] for column in columns]
-
-    if "apply_url" not in column_names:
-        conn.execute(
-            "ALTER TABLE schemes ADD COLUMN apply_url TEXT"
-        )
-    conn.commit()
-        # Add official application link for Rajarshi Shahu EBC scheme
-
-
-    conn.commit()
 
     # Rajarshi Shahu EBC application portal
     conn.execute("""
@@ -111,6 +91,7 @@ def init_db():
     ))
 
     conn.commit()
+
     # Add demo schemes only if database is empty
     count = conn.execute(
         "SELECT COUNT(*) AS total FROM schemes"
@@ -211,7 +192,7 @@ def init_db():
             )
         ]
 
-             conn.executemany("""
+        conn.executemany("""
             INSERT INTO schemes
             (
                 name,
@@ -232,13 +213,9 @@ def init_db():
     conn.close()
 
 
+# Initialize database when the application starts
 with app.app_context():
     init_db()
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
 
 
 # -----------------------------
@@ -448,7 +425,9 @@ def get_schemes():
                 "type": scheme["type"],
                 "description": scheme["description"],
                 "eligibility": scheme["eligibility"],
-                "benefit": scheme["benefit"]
+                "benefit": scheme["benefit"],
+                "where_to_apply": scheme["where_to_apply"],
+                "apply_url": scheme["apply_url"]
             })
 
     return jsonify(result)
@@ -491,6 +470,8 @@ def add_scheme():
     description = data.get("description", "").strip()
     eligibility = data.get("eligibility", "").strip()
     benefit = data.get("benefit", "").strip()
+    where_to_apply = data.get("where_to_apply", "").strip()
+    apply_url = data.get("apply_url", "").strip()
 
     if not all([
         name,
@@ -517,9 +498,11 @@ def add_scheme():
             type,
             description,
             eligibility,
-            benefit
+            benefit,
+            where_to_apply,
+            apply_url
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         name,
         category,
@@ -527,7 +510,9 @@ def add_scheme():
         scheme_type,
         description,
         eligibility,
-        benefit
+        benefit,
+        where_to_apply,
+        apply_url
     ))
 
     conn.commit()
@@ -566,10 +551,4 @@ def delete_scheme(scheme_id):
 # Start Flask
 # -----------------------------
 if __name__ == "__main__":
-
-    init_db()
-
-    app.run(
-        debug=True
-    )
-    
+    app.run(debug=True)
